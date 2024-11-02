@@ -1,0 +1,17 @@
+# This file will automatically update with entries for new content after a build and reload
+
+Items: {
+	Sharingan: {
+	}
+
+	TestSwordNumber2: {
+		DisplayName: Test Sword Number 2
+		Tooltip: My Second Sword
+	}
+}
+
+Projectiles: {
+	SusanooProjectile.DisplayName: Susanoo Projectile
+	BlackHoleProjectile.DisplayName: Black Hole Projectile
+	MangekyoSharinganProjectTile.DisplayName: Mangekyo Sharingan Project Tile
+}

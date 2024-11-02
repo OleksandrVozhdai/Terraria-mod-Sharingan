@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "OG4hrEeORp8g3PZbJeqEM8dcw8/enswvtmWdwVoQR6H5cin2zq/2xHKpQ5Sfa5p9SMsVWMYaOGuX8+MibdH3fA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Oleks\\OneDrive\\Dokumenty\\My Games\\Terraria\\tModLoader\\ModSources\\Sharingan\\Sharingan.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Oleks\\.nuget\\packages\\tmodloader.codeassist\\0.1.5\\tmodloader.codeassist.0.1.5.nupkg.sha512"
+  ],
+  "logs": []
+}

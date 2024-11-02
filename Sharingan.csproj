@@ -1,0 +1,12 @@
+
+<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="..\tModLoader.targets" />
+  <PropertyGroup>
+    <AssemblyName>MyFirstTestMod</AssemblyName>
+    <LangVersion>latest</LangVersion>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Buffs\SusanooBuff.png" />
+  </ItemGroup>
+</Project>

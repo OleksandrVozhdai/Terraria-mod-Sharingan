@@ -1,0 +1,169 @@
+Mods: {
+	Sharingan: {
+		Items: {
+			Sharingan: {
+				DisplayName: Sharingan
+				Tooltip: ""
+			}
+
+			MangekyoSharingan: {
+				DisplayName: Mangekyou Sharingan
+				Tooltip: ""
+			}
+
+			ObitoMask: {
+				DisplayName: Obito Mask
+				Tooltip: ""
+			}
+
+			Byakugan: {
+				DisplayName: Byakugan
+				Tooltip:
+					'''
+					[c/FF0000:Awakening level : 1]
+					[c/FF4500:Eyes of the Hyuuga Clan]
+					'''
+			}
+
+			Rinnengan: {
+				DisplayName: Rinnengan
+				Tooltip: ""
+			}
+
+			Rinne: {
+				DisplayName: Rinne
+				Tooltip: ""
+			}
+
+			SakuraPills: {
+				DisplayName: Sakura Pills
+				Tooltip: It looks delicious!
+			}
+
+			EyeSlotConsumable: {
+				DisplayName: Eye Slot Consumable
+				Tooltip: ""
+			}
+
+			SharinganCraftingStationPlaceable: {
+				DisplayName: Laboratory
+				Tooltip: Used for creating eyes
+			}
+
+			HashiramaCell: {
+				DisplayName: Hashirama Cell
+				Tooltip: ""
+			}
+
+			BloodInjectionNeedle: {
+				DisplayName: Syringe
+				Tooltip: ""
+			}
+
+			MangekyoSharinganlvl2: {
+				DisplayName: Mangekyou Sharingan
+				Tooltip: ""
+			}
+
+			PurifiedEye: {
+				DisplayName: Purified Eye
+				Tooltip: "[c/FF0000:Awakening level : 0]"
+			}
+
+			SharinganItem: {
+				DisplayName: Sharingan
+				Tooltip: ""
+			}
+		}
+
+		Buffs: {
+			SharinganBuff: {
+				DisplayName: Sharingan
+				Description: Uchiha power
+			}
+
+			MangekyoSharinganBuff: {
+				DisplayName: Mangekyou Sharingan
+				Description: You lose your light..
+			}
+
+			ByakuganBuff: {
+				DisplayName: Byakugan
+				Description: You see everything
+			}
+
+			RinnenganBuff: {
+				DisplayName: Rinnengan
+				Description: Know the pain
+			}
+
+			AmaterasuBuff: {
+				DisplayName: Amaterasu
+				Description: ""
+			}
+
+			DisgustingBuff: {
+				DisplayName: Disgusting
+				Description: ""
+			}
+
+			AmaterasuDebuff: {
+				DisplayName: Your eye hurts
+				Description: Can't use amaterasu
+			}
+
+			SusanooBuff: {
+				DisplayName: Susanoo Buff
+				Description: Mods.Sharingan.Buffs.SusanooBuff.Description
+			}
+
+			ShinraTenseiDebuff: {
+				DisplayName: Shinra Tensei Cooldown
+				Description: You need to rest to use it again!
+			}
+
+			PushDebuff: {
+				DisplayName: Push Cooldown
+				Description: ""
+			}
+
+			IzanagiDeBuff: {
+				DisplayName: Izanagi Cooldown
+				Description: ""
+			}
+
+			MangekyoSharinganlvl2Buff: {
+				DisplayName: Mangekyou Sharingan
+				Description: You lose your light..
+			}
+
+			TpCooldownBuff: {
+				DisplayName: Teleportation Cooldown
+				Description: ""
+			}
+
+			TpRinnCooldownBuff: {
+				DisplayName: Teleportation Cooldown
+				Description: ""
+			}
+		}
+
+		Keybinds: {
+			"Key for Shinra Tensei.DisplayName": Key for  Shinra  Tensei
+			"Shinra Tensei.DisplayName": Shinra  Tensei
+			"Rinn - Shinra Tensei.DisplayName": Rinn -  Shinra  Tensei
+			"Rinn - Push enemy.DisplayName": Rinn -  Push enemy
+			"Rinn - Attract enemy.DisplayName": Rinn -  Attract enemy
+			"Teleport to cursor.DisplayName": Teleport to cursor
+			"Rinnengan - Shinra Tensei.DisplayName": Rinnengan -  Shinra  Tensei
+			"Rinnengan - Push enemy.DisplayName": Rinnengan -  Push enemy
+			"Rinnengan - Attract enemy.DisplayName": Rinnengan -  Attract enemy
+			"Rinnengan/Sharingan - Teleport to cursor.DisplayName": Rinnengan/ Sharingan -  Teleport to cursor
+			"Sharingan - Dodge.DisplayName": Sharingan -  Dodge
+			"Sharingan - Amaterasu.DisplayName": Sharingan -  Amaterasu
+			"Sharingan - Spawn ravens.DisplayName": Sharingan -  Spawn ravens
+			"Sharingan - Despawn ravens.DisplayName": Sharingan -  Despawn ravens
+			"Rinn/Shar - Teleport to cursor.DisplayName": Rinn/ Shar -  Teleport to cursor
+		}
+	}
+}
