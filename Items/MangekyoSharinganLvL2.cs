@@ -24,6 +24,8 @@ namespace Sharingan.Items
 
         public override void ModifyTooltips(List<TooltipLine> list)
         {
+            var assignedKeyGenjutsuSharingan = Sharingan.GenjutsuSharingan.GetAssignedKeys();
+            string hotKeyGenjutsuSharingan = assignedKeyGenjutsuSharingan.Count > 0 ? assignedKeyGenjutsuSharingan[0].ToString() : "None";
             var assignedKeysTP = Sharingan.TeleportKeyBind.GetAssignedKeys();
             string hotkeyTextTP = assignedKeysTP.Count > 0 ? assignedKeysTP[0].ToString() : "None";
             var assignedKeysAM = Sharingan.AmaterasuKeyBind.GetAssignedKeys();
@@ -41,6 +43,7 @@ namespace Sharingan.Items
             list.Add(new TooltipLine(Mod, "SummonRavens", $"[c/FFFF00:Press {hotkeyTextSR} to summon ravens, {hotkeyTextDR} for despawn (Takes minion slot)]"));
             list.Add(new TooltipLine(Mod, "IzanagiDojutsu", "[c/FFFF00:Izanagi Dojutsu (Passive)]"));
             list.Add(new TooltipLine(Mod, "TeleportToCursor", $"[c/FFFF00:Press {hotkeyTextTP} to teleport to cursor]"));
+            list.Add(new TooltipLine(Mod, "Genjutsu Sharingan", $"[c/FFFF00:Press {hotKeyGenjutsuSharingan} to activate genjutsu]"));
             list.Add(new TooltipLine(Mod, "ManaCost", "[c/00FFFF:Consumes mana]"));
             list.Add(new TooltipLine(Mod, "TrueSharingan", "[c/FF4500:True Sharingan]"));
         }
@@ -109,6 +112,13 @@ namespace Sharingan.Items
 
                 player.GetModPlayer<MyModPlayerMangekyoSharinganlvl2>().cooldownTimer = 3600;
                 SoundEngine.PlaySound(SoundID.Item20, player.position);
+            }
+
+            if (Sharingan.GenjutsuSharingan.JustPressed && player.GetModPlayer<MyModPlayerSharingan>().cooldown <= 0)
+            {
+                player.GetModPlayer<MyModPlayerMangekyoSharinganlvl2>().isLightActive = true;
+                player.GetModPlayer<MyModPlayerSharingan>().FreezeEnemiesGenjutsu();
+                player.AddBuff(ModContent.BuffType<GenjutsuCoolDown>(), 3600);
             }
 
             if (Sharingan.ShadowDodgeKeyBind.Current && player.statMana >= 10)

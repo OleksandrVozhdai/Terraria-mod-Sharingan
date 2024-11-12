@@ -146,6 +146,16 @@ Mods: {
 				DisplayName: Teleportation Cooldown
 				Description: ""
 			}
+
+			GenjutsuSharingan: {
+				DisplayName: Genjutsu Sharingan
+				Description: Mods.Sharingan.Buffs.GenjutsuSharingan.Description
+			}
+
+			GenjutsuCoolDown: {
+				DisplayName: Genjutsu Cool Down
+				Description: Genjutsu Cool Down
+			}
 		}
 
 		Keybinds: {
@@ -164,6 +174,7 @@ Mods: {
 			"Sharingan - Spawn ravens.DisplayName": Sharingan -  Spawn ravens
 			"Sharingan - Despawn ravens.DisplayName": Sharingan -  Despawn ravens
 			"Rinn/Shar - Teleport to cursor.DisplayName": Rinn/ Shar -  Teleport to cursor
+			"Sharingan - Genjutsu Sharingan.DisplayName": Sharingan -  Genjutsu  Sharingan
 		}
 	}
 }

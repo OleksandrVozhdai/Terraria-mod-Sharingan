@@ -18,7 +18,6 @@ namespace Sharingan.Items
 
     public class MangekyoSharingan : ModItem, ILocalizedModType
     {
-
         public static readonly int MoveSpeedBonus = 5;
         internal int ShadowDodgeTimer = 0;
         public bool IsShadowDodgeActive = false;
@@ -40,7 +39,8 @@ namespace Sharingan.Items
 
         public override void ModifyTooltips(List<TooltipLine> list)
         {
-  
+            var assignedKeyGenjutsuSharingan = Sharingan.GenjutsuSharingan.GetAssignedKeys();
+            string hotKeyGenjutsuSharingan = assignedKeyGenjutsuSharingan.Count > 0 ? assignedKeyGenjutsuSharingan[0].ToString() : "None";
             var assignedKeysAM = Sharingan.AmaterasuKeyBind.GetAssignedKeys();
             string hotkeyTextAM = assignedKeysAM.Count > 0 ? assignedKeysAM[0].ToString() : "None";
             var assignedKeysDodge = Sharingan.ShadowDodgeKeyBind.GetAssignedKeys();
@@ -54,6 +54,7 @@ namespace Sharingan.Items
             list.Add(new TooltipLine(Mod, "DodgeAttack", $"[c/FFFF00:Hold {hotkeyTextDodge} to dodge attacks with your Sharingan]"));
             list.Add(new TooltipLine(Mod, "ActivateAmaterasu", $"[c/FFFF00:Press {hotkeyTextAM} to activate Amaterasu]"));
             list.Add(new TooltipLine(Mod, "SummonRavens", $"[c/FFFF00:Press {hotkeyTextSR} to summon ravens, {hotkeyTextDR} for despawn (Takes minion slot)]"));
+            list.Add(new TooltipLine(Mod, "Genjutsu Sharingan", $"[c/FFFF00:Press {hotKeyGenjutsuSharingan} to activate genjutsu]"));
             list.Add(new TooltipLine(Mod, "ManaCost", "[c/00FFFF:Consumes mana]"));
             list.Add(new TooltipLine(Mod, "TrueSharingan", "[c/FF4500:True Sharingan]"));
 
@@ -79,10 +80,7 @@ namespace Sharingan.Items
         {
 
             // ShadowDodgeTimer++;
-
-
-            
-           player.GetModPlayer<MyModPlayerMangekyoSharingan>().SharinganEquipped = true;
+            player.GetModPlayer<MyModPlayerMangekyoSharingan>().SharinganEquipped = true;
             
             
             player.maxMinions += 5;
@@ -102,11 +100,14 @@ namespace Sharingan.Items
                
                 player.GetModPlayer<MyModPlayerMangekyoSharingan>().cooldownTimer = 3600;
                 SoundEngine.PlaySound(SoundID.Item20, player.position);
-
-                Projectile.NewProjectile(player.GetSource_FromThis(), player.Center, Vector2.Zero, ModContent.ProjectileType<MangekyoSharinganProjectTile>(), 50, 0, player.whoAmI);
             }
 
-
+            if (Sharingan.GenjutsuSharingan.JustPressed && player.GetModPlayer<MyModPlayerSharingan>().cooldown <= 0)
+            {
+                player.GetModPlayer<MyModPlayerMangekyoSharinganlvl2>().isLightActive = true;
+                player.GetModPlayer<MyModPlayerSharingan>().FreezeEnemiesGenjutsu();
+                player.AddBuff(ModContent.BuffType<GenjutsuCoolDown>(), 3600);
+            }
 
             if (Sharingan.ShadowDodgeKeyBind.Current && player.statMana >= 10)
             {
@@ -394,9 +395,9 @@ namespace Sharingan.Items
         public float lightIntensity = 0f;
         public bool isLightActive = false;
         public bool increasing = true;
-       
+        public int cooldown = 0;
 
-       
+
 
         public override void ResetEffects()
         {
@@ -464,6 +465,27 @@ namespace Sharingan.Items
                         CreateBlackFireParticles(npc.Center);
                     }
                 }
+            }
+        }
+        public void FreezeEnemiesGenjutsu()
+        {
+            if (cooldown <= 0)
+            {
+                Vector2 playerPosition = Player.Center;
+                float radius = 1000f;
+
+                for (int i = 0; i < Main.maxNPCs; i++)
+                {
+                    NPC npc = Main.npc[i];
+                    if (npc.active && !npc.friendly && Vector2.Distance(playerPosition, npc.Center) <= radius)
+                    {
+
+                        npc.AddBuff(ModContent.BuffType<GenjutsuSharingan>(), 360);
+                        npc.localAI[0] = 360;
+                    }
+                }
+
+                cooldown = CooldownTime;
             }
         }
 

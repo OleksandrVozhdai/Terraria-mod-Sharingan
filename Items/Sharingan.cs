@@ -23,7 +23,8 @@ namespace Sharingan.Items
     internal class SharinganItem : ModItem
     {
 
-
+        private const int StopEnemiesCooldownTime = 3600; 
+        private int stopEnemiesCooldown = 0;
         private static Texture2D customMoonTexture;
 
       
@@ -35,13 +36,16 @@ namespace Sharingan.Items
         public override void ModifyTooltips(List<TooltipLine> list)
         {
             var assignedKeysDodge = Sharingan.ShadowDodgeKeyBind.GetAssignedKeys();
+            var assignedKeyGenjutsuSharingan = Sharingan.GenjutsuSharingan.GetAssignedKeys();
+            string hotKeyGenjutsuSharingan = assignedKeyGenjutsuSharingan.Count > 0 ? assignedKeyGenjutsuSharingan[0].ToString() : "None";
             string hotkeyTextDodge = assignedKeysDodge.Count > 0 ? assignedKeysDodge[0].ToString() : "None";
 
             list.Add(new TooltipLine(Mod, "AwakeningLevel", "[c/FF0000:Awakening level: 1]"));
             list.Add(new TooltipLine(Mod, "DodgeAttack", $"[c/FFFF00:Hold {hotkeyTextDodge} to dodge attacks with your Sharingan]"));
+            list.Add(new TooltipLine(Mod, "Genjutsu Sharingan", $"[c/FFFF00:Press {hotKeyGenjutsuSharingan} to activate genjutsu]"));
+
             list.Add(new TooltipLine(Mod, "ManaCost", "[c/00FFFF:Consumes mana]"));
             list.Add(new TooltipLine(Mod, "TrueSharingan", "[c/FF4500:Strength of the Uchiha clan]"));
-
         }
 
         public override void SetStaticDefaults()
@@ -60,14 +64,13 @@ namespace Sharingan.Items
            
         }
 
-     
-
-
-       
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
+            if (stopEnemiesCooldown > 0)
+            {
+                stopEnemiesCooldown--; 
+            }
 
-           
             ShadowDodgeTimer++;
             player.maxMinions += 3;
             player.GetModPlayer<MyModPlayerSharingan>().SharinganEquipped = true;
@@ -87,7 +90,14 @@ namespace Sharingan.Items
             else 
             {
                 player.GetModPlayer<MyModPlayerSharingan>().OffDodge();
-            }   
+            }
+
+             if (Sharingan.GenjutsuSharingan.JustPressed && player.GetModPlayer<MyModPlayerSharingan>().cooldown <= 0)
+             {
+                player.GetModPlayer<MyModPlayerMangekyoSharinganlvl2>().isLightActive = true;
+                player.GetModPlayer<MyModPlayerSharingan>().FreezeEnemiesGenjutsu();
+                player.AddBuff(ModContent.BuffType<GenjutsuCoolDown>(), 3600);
+             }
 
 
             player.AddBuff(ModContent.BuffType<SharinganBuff>(), 1);
@@ -331,7 +341,35 @@ namespace Sharingan.Items
             {
                 cooldownTimer--; 
             }
+            if (cooldown > 0)
+            {
+                cooldown--;
+            }
         }
+
+
+        public void FreezeEnemiesGenjutsu()
+        {
+            if (cooldown <= 0) 
+            {
+                Vector2 playerPosition = Player.Center;
+                float radius = 1000f; 
+
+                for (int i = 0; i < Main.maxNPCs; i++)
+                {
+                    NPC npc = Main.npc[i];
+                    if (npc.active && !npc.friendly && Vector2.Distance(playerPosition, npc.Center) <= radius)
+                    {
+                        
+                        npc.AddBuff(ModContent.BuffType<GenjutsuSharingan>(), 360);
+                        npc.localAI[0] = 360;
+                    }
+                }
+
+                cooldown = CooldownTime; 
+            }
+        }
+
 
         public override void ModifyDrawInfo(ref PlayerDrawSet drawInfo)
         {

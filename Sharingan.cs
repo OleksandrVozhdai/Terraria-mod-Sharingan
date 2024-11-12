@@ -10,7 +10,8 @@ namespace Sharingan
     public class Sharingan : Mod
     {
         public static ModKeybind ShinraTenseiKeyBind, PushEnemyKeyBind, AttractEnemyKeyBind, TeleportKeyBind,
-                                 ShadowDodgeKeyBind, AmaterasuKeyBind, CrowsKeyBindSpawn, CrowsKeyBindDeSpawn;
+                                 ShadowDodgeKeyBind, AmaterasuKeyBind, CrowsKeyBindSpawn, CrowsKeyBindDeSpawn,
+                                 GenjutsuSharingan;
 
         public override void Load()
         {
@@ -22,7 +23,8 @@ namespace Sharingan
             AmaterasuKeyBind = KeybindLoader.RegisterKeybind(this, "Sharingan - Amaterasu", Microsoft.Xna.Framework.Input.Keys.G);
             CrowsKeyBindSpawn = KeybindLoader.RegisterKeybind(this, "Sharingan - Spawn ravens", Microsoft.Xna.Framework.Input.Keys.K);
             CrowsKeyBindDeSpawn = KeybindLoader.RegisterKeybind(this, "Sharingan - Despawn ravens", Microsoft.Xna.Framework.Input.Keys.Y);
-           // TextureAssets.Moon = ModContent.Request<Texture2D>("Sharingan/Images/MoonRinn").Value;
+            GenjutsuSharingan = KeybindLoader.RegisterKeybind(this, "Sharingan - Genjutsu Sharingan", Microsoft.Xna.Framework.Input.Keys.L);
+           // TextureAssets.Moon = ModContent.Request<Texture2D>("Sharingan/Images/MoonRinn").Value;    
         }
 
         public override void Unload()

@@ -9,7 +9,7 @@ namespace Sharingan.Buffs
 {
     internal class TpCooldownBuff : ModBuff
     {
-        public static readonly int DefenseBonus = 10;
+      //  public static readonly int DefenseBonus = 10;
 
         public override void SetStaticDefaults()
         {
@@ -18,8 +18,8 @@ namespace Sharingan.Buffs
         }
         public override void Update(Player player, ref int buffIndex)
         {
-            player.statDefense += DefenseBonus;
-            player.waterWalk = true;
+            //player.statDefense += DefenseBonus;
+           // player.waterWalk = true;
 
 
         }
